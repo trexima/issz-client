@@ -1,0 +1,4 @@
+Trexima\Issz\Model\JobOffer:
+  properties:
+    legalID:
+      - NotBlank: ~
