@@ -55,3 +55,5 @@ var/
 !var/.gitkeep
 .env.local
 test.php
+
+.idea/
