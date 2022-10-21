@@ -13,6 +13,26 @@ use Trexima\Issz\Model\JobOffer\WorkingLoad;
 class JobOffer implements \JsonSerializable
 {
     /**
+     * @return string
+     */
+    public function getSKISCO08(): string
+    {
+        return $this->SKISCO08;
+    }
+
+    /**
+     * @param string $SKISCO08
+     */
+    public function setSKISCO08(string $SKISCO08): void
+    {
+        $this->SKISCO08 = $SKISCO08;
+    }
+
+    /**
+     * @var string $SKISCO08
+     */
+    protected string $SKISCO08;
+    /**
      * IČO Zamestnávateľa
      *
      * @var string
@@ -42,12 +62,6 @@ class JobOffer implements \JsonSerializable
      * @var string
      */
     protected string $positionName;
-    /**
-     * Pracovná pozícia podľa kódu SK ISCO – 08
-     *
-     * @var string
-     */
-    protected string $sKISCO08;
     /**
      * Prevažujúca činnosť zamestnávateľa
      *
@@ -307,29 +321,6 @@ class JobOffer implements \JsonSerializable
     }
 
     /**
-     * pracovná pozícia podľa kódu SK ISCO – 08
-     *
-     * @return string
-     */
-    public function getSKISCO08(): string
-    {
-        return $this->sKISCO08;
-    }
-
-    /**
-     * pracovná pozícia podľa kódu SK ISCO – 08
-     *
-     * @param string $sKISCO08
-     *
-     * @return self
-     */
-    public function setSKISCO08(string $sKISCO08): self
-    {
-        $this->sKISCO08 = $sKISCO08;
-        return $this;
-    }
-
-    /**
      * Prevažujúca činnosť zamestnávateľa
      *
      * @return string
@@ -376,7 +367,7 @@ class JobOffer implements \JsonSerializable
     }
 
     /**
-     * adresa miesta výkonu práce
+     * Adresa miesta výkonu práce
      *
      * @return ?JobLocation
      */
@@ -855,10 +846,19 @@ class JobOffer implements \JsonSerializable
         return $this;
     }
 
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
-            'skisco08' => $this->getSKISCO08(),
+            'SKISCO-08' => $this->getSKISCO08(),
+            'baseSalary' => $this->getBaseSalary(),
+            'employmentRelationship' => $this->getEmploymentRelationship(),
+            'externalID' => $this->getExternalID(),
+            'jobCategory' => $this->getJobCategory(),
+            'jobDescription' => $this->getJobDescription(),
+            'jobPositionCount' => $this->getJobPositionCount(),
+            'legalID' => $this->getLegalID(),
+            'positionName' => $this->getPositionName(),
+            'url' => $this->getUrl()
         ];
     }
 }
