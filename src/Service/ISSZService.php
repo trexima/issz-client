@@ -5,7 +5,7 @@ namespace Trexima\Issz\Service;
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validation;
@@ -27,7 +27,7 @@ class ISSZService
         }
         if (null === $serializer) {
             $encoders = [new JsonEncoder()];
-            $normalizers = [new ObjectNormalizer()];
+            $normalizers = [new JsonSerializableNormalizer()];
             $serializer = new Serializer($normalizers, $encoders);
         }
         $this->validator = $validator;
@@ -52,8 +52,7 @@ class ISSZService
      */
     public function postBatch(string $uri, array $jobOffers): ResponseInterface
     {
-        $body = $this->serializer->serialize($jobOffers, 'json');
-        return $this->ISSZClient->post($uri, ['body' => $body]);
+        return $this->ISSZClient->post($uri,  ['json' => $jobOffers]);
     }
 
     public function commitBatch(string $uri, string $batchId): ResponseInterface

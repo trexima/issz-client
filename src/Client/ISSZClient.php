@@ -15,10 +15,11 @@ class ISSZClient extends Client
             'cert' => [realpath($cert), $passphrase],
             'ssl_key' => [realpath($key), $passphrase]
         ];
+
         parent::__construct();
     }
 
-    public function postBatch($uri, array $options = []): ResponseInterface
+    public function post($uri, array $options = []): ResponseInterface
     {
         $options = array_merge($options, $this->authOptions);
         return parent::post($uri, $options);
