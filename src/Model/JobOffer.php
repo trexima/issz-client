@@ -13,115 +13,139 @@ use Trexima\Issz\Model\JobOffer\WorkingLoad;
 class JobOffer implements \JsonSerializable
 {
     /**
-     * @return string
-     */
-    public function getSKISCO08(): string
-    {
-        return $this->SKISCO08;
-    }
-
-    /**
-     * @param string $SKISCO08
-     */
-    public function setSKISCO08(string $SKISCO08): void
-    {
-        $this->SKISCO08 = $SKISCO08;
-    }
-
-    /**
+     * pracovná pozícia podľa kódu SK ISCO – 08
+     *
      * @var string $SKISCO08
      */
-    protected string $SKISCO08;
+    protected ?string $SKISCO08 = null;
+
     /**
      * IČO Zamestnávateľa
      *
      * @var string
      */
-    protected string $legalID;
+    protected ?string $legalID = null;
+
     /**
-     * Uvádza sa plný názov právnickej osoby. Obsahuje celý názov v jednom reťazci, so všetkými časťami v správnom poradí, čo znamená na správnom mieste. Oddelenie častí sa uvádza pomocou prázdneho znaku. Uvádza sa vrátane typových označení organizácie ako a.s. a podobne.
+     * Uvádza sa plný názov právnickej osoby. Obsahuje celý názov v jednom reťazci, so všetkými časťami
+     * v správnom poradí, čo znamená na správnom mieste. Oddelenie častí sa uvádza pomocou prázdneho znaku.
+     * Uvádza sa vrátane typových označení organizácie ako a.s. a podobne.
      *
      * @var string
      */
-    protected string $name;
+    protected ?string $name = null;
+
     /**
      * Url pracovnej ponuky na externom portáli
      *
      * @var string
      */
-    protected string $url;
+    protected ?string $url = null;
+
     /**
      * Adresa zamestnávateľa
      *
      * @var Location
      */
-    protected Location $location;
+    protected ?Location $location = null;
+
     /**
      * Názov pracovnej pozície
      *
      * @var string
      */
-    protected string $positionName;
+    protected ?string $positionName = null;
+
     /**
      * Prevažujúca činnosť zamestnávateľa
      *
      * @var string
      */
-    protected string $sKNACE;
+    protected ?string $sKNACE = null;
+
     /**
      * Popis práce
      *
      * @var string
      */
-    protected string $jobDescription;
+    protected ?string $jobDescription = null;
+
     /**
      * Adresa miesta výkonu práce
      *
      * @var JobLocation
      */
-    protected JobLocation $jobLocation;
+    protected ?JobLocation $jobLocation = null;
+
     /**
-     * - 524801 Voľné pracovné miesto v podnikateľskej sfére - 524803 Voľné pracovné miesto vo verejnom záujme - 524802 Štátnozamestnanecké voľné pracovné miesto
+     * - 524801 Voľné pracovné miesto v podnikateľskej sfére
+     * - 524803 Voľné pracovné miesto vo verejnom záujme
+     * - 524802 Štátnozamestnanecké voľné pracovné miesto
      *
      * @var string
      */
-    protected string $jobCategory;
+    protected ?string $jobCategory = null;
+
     /**
      * Počet voľných pracovných miest
      *
      * @var int
      */
-    protected int $jobPositionCount;
+    protected ?int $jobPositionCount = null;
+
     /**
-     * Základná zložka mzdy (výška v EUR)
+     * Základná zložka mzdy (výška v EUR). Ak nie je možné uviesť, potom zadať 0,-EUR a povinne uviesť
+     * Platové podmienky so sumou
      *
      * @var float
      */
-    protected float $baseSalary;
+    protected ?float $baseSalary = null;
+
+    /**
+     * Platové podmienky. Povinné! ak je Základná zložka mzdy 0,-EUR
+     *
+     * @var string
+     */
+    protected ?string $salaryTerms = null;
+
     /**
      * Požadovaný deň nástupu do práce
      *
      * @var DateTime
      */
-    protected DateTime $startingDay;
+    protected ?DateTime $startingDay = null;
+
     /**
      * Pracovná oblasť – kód, ak je pracovná pozícia v inom SK NACE ako prevažujúca činnosť zamestnávateľa
      *
      * @var string
      */
-    protected string $positionSKNACE;
+    protected ?string $positionSKNACE = null;
+
     /**
      * Ustanovený týždenný pracovný čas v hodinách a rozvrhnutie pracovného času
      *
      * @var WorkingLoad
      */
-    protected WorkingLoad $workingLoad;
+    protected ?WorkingLoad $workingLoad = null;
+
     /**
-     * Údaj o tom, či je práca vykonávaná na zmeny a zmennosť \ - 501701 jednozmenná  - 501710 dohodou  - 501703 trojzmenná  - 501705 štvorzmenná  - 501706 nepretržitá  - 501707 turnusová  - 501708 delené zmeny  - 501702 dvojzmenná  - 501799 iná  - 501709 pružná
+     * Údaj o tom, či je práca vykonávaná na zmeny a zmennosť
+     * - 501701 jednozmenná
+     * - 501710 dohodou
+     * - 501703 trojzmenná
+     * - 501705 štvorzmenná
+     * - 501706 nepretržitá
+     * - 501707 turnusová
+     * - 501708 delené zmeny
+     * - 501702 dvojzmenná
+     * - 501799 iná
+     * - 501709 pružná
      *
      * @var string
      */
-    protected string $workingShifts;
+    protected ?string $workingShifts = null;
+
     /**
      * 501601 - Pracovný pomer na neurčitý čas
      * 501602 - Pracovný pomer na určitú dobu
@@ -137,80 +161,91 @@ class JobOffer implements \JsonSerializable
      *
      * @var string
      */
-    protected string $employmentRelationship;
+    protected ?string $employmentRelationship = null;
+
     /**
      * Údaj o tom, či je pracovné miesto vhodné pre absolventa
      *
      * @var bool
      */
-    protected bool $graduateAvailability;
+    protected ?bool $graduateAvailability = null;
+
     /**
      * Údaj o tom, či je pracovné miesto vhodné pre občana so zdravotným postihnutím
      *
      * @var bool
      */
-    protected bool $disabledAvailability;
+    protected ?bool $disabledAvailability = null;
+
     /**
      * údaj o tom, či má zamestnávateľ záujem obsadiť voľné pracovné miesto štátnym príslušníkom tretej krajiny
      *
      * @var bool
      */
-    protected bool $foreignerAvailability;
+    protected ?bool $foreignerAvailability = null;
+
     /**
      * Požadovaná kvalifikácia
      *
      * @var RequiredQalification
      */
-    protected RequiredQalification $requiredQalification;
+    protected ?RequiredQalification $requiredQalification = null;
+
     /**
      * Požadovaná prax v rokoch
      *
      * @var int
      */
-    protected int $requiredExperience;
+    protected ?int $requiredExperience = null;
+
     /**
      * Požadované znalosti potrebné na výkon práce
      *
      * @var RequiredKnowledge
      */
-    protected RequiredKnowledge $requiredKnoledges;
+    protected ?RequiredKnowledge $requiredKnoledges = null;
+
     /**
      * Benefity poskytované zamestnávateľom
      *
      * @var string
      */
-    protected string $benefits;
+    protected ?string $benefits = null;
+
     /**
      * Možnosť ubytovania (hradené ubytovanie / zabezpečené ubytovanie)
      *
      * @var Accomodation
      */
-    protected Accomodation $accomodation;
+    protected ?Accomodation $accomodation = null;
+
     /**
      * Obsadzovanie voľných pracovných miest vlastnou formou
      *
      * @var bool
      */
-    protected bool $selfFiling;
+    protected ?bool $selfFiling = null;
+
     /**
      * ID voľného pracovného miesta portálu
      *
      * @var string
      */
-    protected string $externalID;
+    protected ?string $externalID = null;
+
     /**
      * Dátum a čas zmeny
      *
      * @var DateTime
      */
-    protected DateTime $changedDate;
+    protected ?DateTime $changedDate = null;
 
     /**
      * IČO Zamestnávateľa
      *
      * @return string
      */
-    public function getLegalID(): string
+    public function getLegalID(): ?string
     {
         return $this->legalID;
     }
@@ -222,30 +257,34 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setLegalID(string $legalID): self
+    public function setLegalID(?string $legalID): self
     {
         $this->legalID = $legalID;
         return $this;
     }
 
     /**
-     * Uvádza sa plný názov právnickej osoby. Obsahuje celý názov v jednom reťazci, so všetkými časťami v správnom poradí, čo znamená na správnom mieste. Oddelenie častí sa uvádza pomocou prázdneho znaku. Uvádza sa vrátane typových označení organizácie ako a.s. a podobne.
+     * Uvádza sa plný názov právnickej osoby. Obsahuje celý názov v jednom reťazci, so všetkými časťami v správnom
+     * poradí, čo znamená na správnom mieste. Oddelenie častí sa uvádza pomocou prázdneho znaku. Uvádza sa vrátane
+     * typových označení organizácie ako a.s. a podobne.
      *
      * @return string
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * Uvádza sa plný názov právnickej osoby. Obsahuje celý názov v jednom reťazci, so všetkými časťami v správnom poradí, čo znamená na správnom mieste. Oddelenie častí sa uvádza pomocou prázdneho znaku. Uvádza sa vrátane typových označení organizácie ako a.s. a podobne.
+     * Uvádza sa plný názov právnickej osoby. Obsahuje celý názov v jednom reťazci, so všetkými časťami v správnom
+     * poradí, čo znamená na správnom mieste. Oddelenie častí sa uvádza pomocou prázdneho znaku. Uvádza sa vrátane
+     * typových označení organizácie ako a.s. a podobne.
      *
      * @param string $name
      *
      * @return self
      */
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
         return $this;
@@ -256,7 +295,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return string
      */
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
         return $this->url;
     }
@@ -268,7 +307,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setUrl(string $url): self
+    public function setUrl(?string $url): self
     {
         $this->url = $url;
         return $this;
@@ -279,7 +318,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return Location
      */
-    public function getLocation(): Location
+    public function getLocation(): ?Location
     {
         return $this->location;
     }
@@ -291,7 +330,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setLocation(Location $location): self
+    public function setLocation(?Location $location): self
     {
         $this->location = $location;
         return $this;
@@ -302,7 +341,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return string
      */
-    public function getPositionName(): string
+    public function getPositionName(): ?string
     {
         return $this->positionName;
     }
@@ -314,7 +353,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setPositionName(string $positionName): self
+    public function setPositionName(?string $positionName): self
     {
         $this->positionName = $positionName;
         return $this;
@@ -325,7 +364,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return string
      */
-    public function getSKNACE(): string
+    public function getSKNACE(): ?string
     {
         return $this->sKNACE;
     }
@@ -337,7 +376,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setSKNACE(string $sKNACE): self
+    public function setSKNACE(?string $sKNACE): self
     {
         $this->sKNACE = $sKNACE;
         return $this;
@@ -348,7 +387,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return string
      */
-    public function getJobDescription(): string
+    public function getJobDescription(): ?string
     {
         return $this->jobDescription;
     }
@@ -360,7 +399,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setJobDescription(string $jobDescription): self
+    public function setJobDescription(?string $jobDescription): self
     {
         $this->jobDescription = $jobDescription;
         return $this;
@@ -383,30 +422,34 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setJobLocation(JobLocation $jobLocation): self
+    public function setJobLocation(?JobLocation $jobLocation): self
     {
         $this->jobLocation = $jobLocation;
         return $this;
     }
 
     /**
-     * - 524801 Voľné pracovné miesto v podnikateľskej sfére - 524803 Voľné pracovné miesto vo verejnom záujme - 524802 Štátnozamestnanecké voľné pracovné miesto
+     * - 524801 Voľné pracovné miesto v podnikateľskej sfére
+     * - 524803 Voľné pracovné miesto vo verejnom záujme
+     * - 524802 Štátnozamestnanecké voľné pracovné miesto
      *
      * @return string
      */
-    public function getJobCategory(): string
+    public function getJobCategory(): ?string
     {
         return $this->jobCategory;
     }
 
     /**
-     * - 524801 Voľné pracovné miesto v podnikateľskej sfére - 524803 Voľné pracovné miesto vo verejnom záujme - 524802 Štátnozamestnanecké voľné pracovné miesto
+     * - 524801 Voľné pracovné miesto v podnikateľskej sfére
+     * - 524803 Voľné pracovné miesto vo verejnom záujme
+     * - 524802 Štátnozamestnanecké voľné pracovné miesto
      *
      * @param string $jobCategory
      *
      * @return self
      */
-    public function setJobCategory(string $jobCategory): self
+    public function setJobCategory(?string $jobCategory): self
     {
         $this->jobCategory = $jobCategory;
         return $this;
@@ -417,7 +460,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return int
      */
-    public function getJobPositionCount(): int
+    public function getJobPositionCount(): ?int
     {
         return $this->jobPositionCount;
     }
@@ -429,7 +472,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setJobPositionCount(int $jobPositionCount): self
+    public function setJobPositionCount(?int $jobPositionCount): self
     {
         $this->jobPositionCount = $jobPositionCount;
         return $this;
@@ -440,7 +483,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return float
      */
-    public function getBaseSalary(): float
+    public function getBaseSalary(): ?float
     {
         return $this->baseSalary;
     }
@@ -452,9 +495,32 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setBaseSalary(float $baseSalary): self
+    public function setBaseSalary(?float $baseSalary): self
     {
         $this->baseSalary = $baseSalary;
+        return $this;
+    }
+
+    /**
+     * Platové podmienky. Povinné! ak je Základná zložka mzdy 0,-EUR
+     *
+     * @return string
+     */
+    public function getSalaryTerms(): ?string
+    {
+        return $this->salaryTerms;
+    }
+
+    /**
+     * Platové podmienky. Povinné! ak je Základná zložka mzdy 0,-EUR
+     *
+     * @param string $salaryTerms
+     *
+     * @return self
+     */
+    public function setSalaryTerms(?string $salaryTerms): self
+    {
+        $this->salaryTerms = $salaryTerms;
         return $this;
     }
 
@@ -463,7 +529,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return DateTime
      */
-    public function getStartingDay(): DateTime
+    public function getStartingDay(): ?DateTime
     {
         return $this->startingDay;
     }
@@ -475,7 +541,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setStartingDay(DateTime $startingDay): self
+    public function setStartingDay(?DateTime $startingDay): self
     {
         $this->startingDay = $startingDay;
         return $this;
@@ -486,7 +552,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return string
      */
-    public function getPositionSKNACE(): string
+    public function getPositionSKNACE(): ?string
     {
         return $this->positionSKNACE;
     }
@@ -498,7 +564,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setPositionSKNACE(string $positionSKNACE): self
+    public function setPositionSKNACE(?string $positionSKNACE): self
     {
         $this->positionSKNACE = $positionSKNACE;
         return $this;
@@ -521,37 +587,57 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setWorkingLoad(WorkingLoad $workingLoad): self
+    public function setWorkingLoad(?WorkingLoad $workingLoad): self
     {
         $this->workingLoad = $workingLoad;
         return $this;
     }
 
     /**
-     * údaj o tom, či je práca vykonávaná na zmeny a zmennosť \ - 501701 jednozmenná  - 501710 dohodou  - 501703 trojzmenná  - 501705 štvorzmenná  - 501706 nepretržitá  - 501707 turnusová  - 501708 delené zmeny  - 501702 dvojzmenná  - 501799 iná  - 501709 pružná
+     * údaj o tom, či je práca vykonávaná na zmeny a zmennosť
+     * - 501701 jednozmenná
+     * - 501710 dohodou
+     * - 501703 trojzmenná
+     * - 501705 štvorzmenná
+     * - 501706 nepretržitá
+     * - 501707 turnusová
+     * - 501708 delené zmeny
+     * - 501702 dvojzmenná
+     * - 501799 iná
+     * - 501709 pružná
      *
      * @return string
      */
-    public function getWorkingShifts(): string
+    public function getWorkingShifts(): ?string
     {
         return $this->workingShifts;
     }
 
     /**
-     * údaj o tom, či je práca vykonávaná na zmeny a zmennosť \ - 501701 jednozmenná  - 501710 dohodou  - 501703 trojzmenná  - 501705 štvorzmenná  - 501706 nepretržitá  - 501707 turnusová  - 501708 delené zmeny  - 501702 dvojzmenná  - 501799 iná  - 501709 pružná
+     * údaj o tom, či je práca vykonávaná na zmeny a zmennosť
+     * - 501701 jednozmenná
+     * - 501710 dohodou
+     * - 501703 trojzmenná
+     * - 501705 štvorzmenná
+     * - 501706 nepretržitá
+     * - 501707 turnusová
+     * - 501708 delené zmeny
+     * - 501702 dvojzmenná
+     * - 501799 iná
+     * - 501709 pružná
      *
      * @param string $workingShifts
      *
      * @return self
      */
-    public function setWorkingShifts(string $workingShifts): self
+    public function setWorkingShifts(?string $workingShifts): self
     {
         $this->workingShifts = $workingShifts;
         return $this;
     }
 
     /**
-     * * 501601 - Pracovný pomer na neurčitý čas
+     * 501601 - Pracovný pomer na neurčitý čas
      * 501602 - Pracovný pomer na určitú dobu
      * 501603 - Pracovný pomer na kratší pracovný čas
      * 501604 - Domácka práca a telepráca
@@ -565,13 +651,13 @@ class JobOffer implements \JsonSerializable
      *
      * @return string
      */
-    public function getEmploymentRelationship(): string
+    public function getEmploymentRelationship(): ?string
     {
         return $this->employmentRelationship;
     }
 
     /**
-     * * 501601 - Pracovný pomer na neurčitý čas
+     * 501601 - Pracovný pomer na neurčitý čas
      * 501602 - Pracovný pomer na určitú dobu
      * 501603 - Pracovný pomer na kratší pracovný čas
      * 501604 - Domácka práca a telepráca
@@ -587,7 +673,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setEmploymentRelationship(string $employmentRelationship): self
+    public function setEmploymentRelationship(?string $employmentRelationship): self
     {
         $this->employmentRelationship = $employmentRelationship;
         return $this;
@@ -610,7 +696,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setGraduateAvailability(bool $graduateAvailability): self
+    public function setGraduateAvailability(?bool $graduateAvailability): self
     {
         $this->graduateAvailability = $graduateAvailability;
         return $this;
@@ -633,7 +719,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setDisabledAvailability(bool $disabledAvailability): self
+    public function setDisabledAvailability(?bool $disabledAvailability): self
     {
         $this->disabledAvailability = $disabledAvailability;
         return $this;
@@ -656,7 +742,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setForeignerAvailability(bool $foreignerAvailability): self
+    public function setForeignerAvailability(?bool $foreignerAvailability): self
     {
         $this->foreignerAvailability = $foreignerAvailability;
         return $this;
@@ -679,7 +765,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setRequiredQalification(JobOfferRequiredQalification $requiredQalification): self
+    public function setRequiredQalification(?JobOfferRequiredQalification $requiredQalification): self
     {
         $this->requiredQalification = $requiredQalification;
         return $this;
@@ -702,7 +788,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setRequiredExperience(int $requiredExperience): self
+    public function setRequiredExperience(?int $requiredExperience): self
     {
         $this->requiredExperience = $requiredExperience;
         return $this;
@@ -725,7 +811,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setRequiredKnoledges(JobOfferRequiredKnowledge $requiredKnoledges): self
+    public function setRequiredKnoledges(?JobOfferRequiredKnowledge $requiredKnoledges): self
     {
         $this->requiredKnoledges = $requiredKnoledges;
         return $this;
@@ -748,7 +834,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setBenefits(string $benefits): self
+    public function setBenefits(?string $benefits): self
     {
         $this->benefits = $benefits;
         return $this;
@@ -771,7 +857,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setAccomodation(JobOfferAccomodation $accomodation): self
+    public function setAccomodation(?JobOfferAccomodation $accomodation): self
     {
         $this->accomodation = $accomodation;
         return $this;
@@ -794,7 +880,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setSelfFiling(bool $selfFiling): self
+    public function setSelfFiling(?bool $selfFiling): self
     {
         $this->selfFiling = $selfFiling;
         return $this;
@@ -817,7 +903,7 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setExternalID(string $externalID): self
+    public function setExternalID(?string $externalID): self
     {
         $this->externalID = $externalID;
         return $this;
@@ -840,25 +926,67 @@ class JobOffer implements \JsonSerializable
      *
      * @return self
      */
-    public function setChangedDate(DateTime $changedDate): self
+    public function setChangedDate(?DateTime $changedDate): self
     {
         $this->changedDate = $changedDate;
+        return $this;
+    }
+
+    /**
+     * pracovná pozícia podľa kódu SK ISCO – 08
+     *
+     * @return string
+     */
+    public function getSKISCO08(): ?string
+    {
+        return $this->SKISCO08;
+    }
+
+    /**
+     * pracovná pozícia podľa kódu SK ISCO – 08
+     *
+     * @param string $SKISCO08
+     *
+     * @return self
+     */
+    public function setSKISCO08(?string $SKISCO08): self
+    {
+        $this->SKISCO08 = $SKISCO08;
         return $this;
     }
 
     public function jsonSerialize(): array
     {
         return [
-            'SKISCO-08' => $this->getSKISCO08(),
-            'baseSalary' => $this->getBaseSalary(),
-            'employmentRelationship' => $this->getEmploymentRelationship(),
-            'externalID' => $this->getExternalID(),
-            'jobCategory' => $this->getJobCategory(),
-            'jobDescription' => $this->getJobDescription(),
-            'jobPositionCount' => $this->getJobPositionCount(),
             'legalID' => $this->getLegalID(),
+            'name' => $this->getName(),
+            'url' => $this->getUrl(),
+            'location' => $this->getLocation(),
             'positionName' => $this->getPositionName(),
-            'url' => $this->getUrl()
+            'SKISCO-08' => $this->getSKISCO08(),
+            'SK-NACE' => $this->getSKNACE(),
+            'jobDescription' => $this->getJobDescription(),
+            'jobLocation' => $this->getJobLocation(),
+            'jobCategory' => $this->getJobCategory(),
+            'jobPositionCount' => $this->getJobPositionCount(),
+            'baseSalary' => $this->getBaseSalary(),
+            'salaryTerms' => $this->getSalaryTerms(),
+            'startingDate' => $this->getStartingDay(),
+            'position-SK-NACE' => $this->getPositionSKNACE(),
+            'workingLoad' => $this->getWorkingLoad(),
+            'workingShifts' => $this->getWorkingShifts(),
+            'employmentRelationship' => $this->getEmploymentRelationship(),
+            'graduateAvailability' => $this->getGraduateAvailability(),
+            'disabledAvailability' => $this->getDisabledAvailability(),
+            'foreignerAvailability' => $this->getForeignerAvailability(),
+            'requiredQalification' => $this->getRequiredQalification(),
+            'requiredExperience' => $this->getRequiredExperience(),
+            'requiredKnoledges' => $this->getRequiredKnoledges(),
+            'benefits' => $this->getBenefits(),
+            'accomodation' => $this->getAccomodation(),
+            'selfFiling' => $this->getSelfFiling(),
+            'externalID' => $this->getExternalID(),
+            'changedDate' => $this->getChangedDate(),
         ];
     }
 }

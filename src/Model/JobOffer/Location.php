@@ -2,53 +2,60 @@
 
 namespace Trexima\Issz\Model\JobOffer;
 
-class Location
+class Location implements \JsonSerializable
 {
     /**
      * Lokálna štatistická územná jednotka 2
      *
      * @var string
      */
-    protected string $lau2;
+    protected ?string $lau2 = null;
+
     /**
      * Regionálna štatistická územná jednotka 3
      *
      * @var string
      */
-    protected $nUTS3;
+    protected ?string $nUTS3 = null;
+
     /**
      * Ulica
      *
      * @var string
      */
-    protected $street;
+    protected ?string $street = null;
+
     /**
      * Súpisné/Popisné číslo
      *
      * @var int
      */
-    protected $propertyRegistrationNumber;
+    protected ?int $propertyRegistrationNumber = null;
+
     /**
      * Orientačné číslo
      *
      * @var string
      */
-    protected $orientationNumber;
+    protected ?string $orientationNumber = null;
+
     /**
      * PSČ
      *
      * @var string
      */
-    protected $postCode;
+    protected ?string $postCode = null;
+
     /**
      * lokálna štatistická územná jednotka 2
      *
      * @return string
      */
-    public function getLau2() : string
+    public function getLau2() : ?string
     {
         return $this->lau2;
     }
+
     /**
      * lokálna štatistická územná jednotka 2
      *
@@ -56,20 +63,22 @@ class Location
      *
      * @return self
      */
-    public function setLau2(string $lau2) : self
+    public function setLau2(?string $lau2) : self
     {
         $this->lau2 = $lau2;
         return $this;
     }
+
     /**
      * Regionálna štatistická územná jednotka 3
      *
      * @return string
      */
-    public function getNUTS3() : string
+    public function getNUTS3() : ?string
     {
         return $this->nUTS3;
     }
+
     /**
      * Regionálna štatistická územná jednotka 3
      *
@@ -77,20 +86,22 @@ class Location
      *
      * @return self
      */
-    public function setNUTS3(string $nUTS3) : self
+    public function setNUTS3(?string $nUTS3) : self
     {
         $this->nUTS3 = $nUTS3;
         return $this;
     }
+
     /**
      * Ulica
      *
      * @return string
      */
-    public function getStreet() : string
+    public function getStreet() : ?string
     {
         return $this->street;
     }
+
     /**
      * Ulica
      *
@@ -98,20 +109,22 @@ class Location
      *
      * @return self
      */
-    public function setStreet(string $street) : self
+    public function setStreet(?string $street) : self
     {
         $this->street = $street;
         return $this;
     }
+
     /**
      * Súpisné/Popisné číslo
      *
      * @return int
      */
-    public function getPropertyRegistrationNumber() : int
+    public function getPropertyRegistrationNumber() : ?int
     {
         return $this->propertyRegistrationNumber;
     }
+
     /**
      * Súpisné/Popisné číslo
      *
@@ -119,20 +132,22 @@ class Location
      *
      * @return self
      */
-    public function setPropertyRegistrationNumber(int $propertyRegistrationNumber) : self
+    public function setPropertyRegistrationNumber(?int $propertyRegistrationNumber) : self
     {
         $this->propertyRegistrationNumber = $propertyRegistrationNumber;
         return $this;
     }
+
     /**
      * Orientačné číslo
      *
      * @return string
      */
-    public function getOrientationNumber() : string
+    public function getOrientationNumber() : ?string
     {
         return $this->orientationNumber;
     }
+
     /**
      * Orientačné číslo
      *
@@ -140,20 +155,22 @@ class Location
      *
      * @return self
      */
-    public function setOrientationNumber(string $orientationNumber) : self
+    public function setOrientationNumber(?string $orientationNumber) : self
     {
         $this->orientationNumber = $orientationNumber;
         return $this;
     }
+
     /**
      * PSČ
      *
      * @return string
      */
-    public function getPostCode() : string
+    public function getPostCode() : ?string
     {
         return $this->postCode;
     }
+
     /**
      * PSČ
      *
@@ -161,9 +178,21 @@ class Location
      *
      * @return self
      */
-    public function setPostCode(string $postCode) : self
+    public function setPostCode(?string $postCode) : self
     {
         $this->postCode = $postCode;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'lau2' => $this->getLau2(),
+            'NUTS3' => $this->getNUTS3(),
+            'street' => $this->getStreet(),
+            'propertyRegistrationNumber' => $this->getPropertyRegistrationNumber(),
+            'orientationNumber' => $this->getOrientationNumber(),
+            'postCode' => $this->getPostCode(),
+        ];
     }
 }

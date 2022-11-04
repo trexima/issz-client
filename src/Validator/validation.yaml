@@ -2,3 +2,236 @@ Trexima\Issz\Model\JobOffer:
   properties:
     legalID:
       - NotBlank: ~
+    name:
+      - Length:
+          min: 0
+          max: 255
+          maxMessage: 'Name cannot be longer than {{ limit }} characters'
+    url:
+      - NotBlank: ~
+      - Length:
+          min: 0
+          max: 3000
+          maxMessage: 'URL cannot be longer than {{ limit }} characters'
+    location:
+      - Type: Trexima\Issz\Model\JobOffer\Location
+      - Valid: ~
+    positionName:
+      - NotBlank: ~
+      - Length:
+          min: 0
+          max: 255
+          maxMessage: 'PositionName cannot be longer than {{ limit }} characters'
+    SKISCO08:
+      - NotBlank: ~
+      - Length:
+          min: 1
+          max: 7
+          minMessage: 'SKISCO-08 must be at least {{ limit }} characters long'
+          maxMessage: 'SKISCO-08 cannot be longer than {{ limit }} characters'
+      - Regex:
+          pattern: '/^[0-9]+$/i'
+    sKNACE:
+      - Length:
+          min: 1
+          max: 5
+          minMessage: 'SK-NACE must be at least {{ limit }} characters long'
+          maxMessage: 'SK-NACE cannot be longer than {{ limit }} characters'
+      - Regex:
+          pattern: '/^[0-9]+$/i'
+    jobDescription:
+      - NotBlank: ~
+      - Length:
+          min: 0
+          max: 4000
+          maxMessage: 'JobDescription cannot be longer than {{ limit }} characters'
+    jobLocation:
+      - Type: Trexima\Issz\Model\JobOffer\JobLocation
+      - Valid: ~
+    jobCategory:
+      - NotBlank: ~
+      - Choice: { choices: ['524801', '524802', '524803'], message: Choose a valid jobCategory. }
+    jobPositionCount:
+      - NotBlank: ~
+      - Positive: ~
+      - LessThanOrEqual: 10000
+      - GreaterThanOrEqual: 1
+    baseSalary:
+      - NotBlank: ~
+      - PositiveOrZero: ~
+      - LessThanOrEqual: 999999
+    salaryTerms:
+      - Length:
+          min: 0
+          max: 1000
+          maxMessage: 'SalaryTerms cannot be longer than {{ limit }} characters'
+      - Regex:
+          pattern: '/^.*[1-9]+.*$/i'
+#    startingDay:
+    positionSKNACE:
+      - Length:
+          min: 1
+          max: 5
+          minMessage: 'Position SK-NACE must be at least {{ limit }} characters long'
+          maxMessage: 'Position SK-NACE cannot be longer than {{ limit }} characters'
+      - Regex:
+          pattern: '/^[0-9]+$/i'
+    workingLoad:
+      - Type: Trexima\Issz\Model\JobOffer\WorkingLoad
+      - Valid: ~
+    workingShifts:
+      - Choice: { choices: ['501701', '501702', '501703', '501705', '501706', '501707', '501708', '501709', '501710', '501799'], message: Choose a valid workingShifts. }
+    employmentRelationship:
+      - NotBlank: ~
+      - Choice: { choices: ['501601', '501602', '501603', '501604', '501607', '501608', '501609', '501610', '501611', '501612', '501613'], message: Choose a valid employmentRelationship. }
+#    graduateAvailability:
+#    disabledAvailability:
+#    foreignerAvailability:
+    requiredQalification:
+      - Type: Trexima\Issz\Model\JobOffer\RequiredQalification
+      - Valid: ~
+    requiredExperience:
+      - PositiveOrZero: ~
+      - LessThanOrEqual: 5
+    requiredKnoledges:
+      - Type: Trexima\Issz\Model\JobOffer\RequiredKnowledge
+      - Valid: ~
+#    benefits:
+    accomodation:
+      - Type: Trexima\Issz\Model\JobOffer\Accomodation
+#      - Valid: ~
+#    selfFiling:
+    externalID:
+      - NotBlank: ~
+      - Length:
+          min: 0
+          max: 128
+          minMessage: 'External ID must be at least {{ limit }} characters long'
+          maxMessage: 'External ID cannot be longer than {{ limit }} characters'
+#    changedDate:
+
+#Trexima\Issz\Model\JobOffer\Accomodation:
+#  properties:
+#    paid:
+#    warranted:
+
+Trexima\Issz\Model\JobOffer\JobLocation:
+  properties:
+#    stateCodeIso3166:
+#    lau1:
+    lau2:
+      - Length:
+          min: 0
+          max: 255
+          minMessage: 'Lau2 must be at least {{ limit }} characters long'
+          maxMessage: 'Lau2 cannot be longer than {{ limit }} characters'
+    nUTS3:
+      - Length:
+          min: 0
+          max: 10
+          minMessage: 'NUTS3 must be at least {{ limit }} characters long'
+          maxMessage: 'NUTS3 cannot be longer than {{ limit }} characters'
+    street:
+      - Length:
+          min: 0
+          max: 100
+          minMessage: 'Street must be at least {{ limit }} characters long'
+          maxMessage: 'Street cannot be longer than {{ limit }} characters'
+#    propertyRegistrationNumber:
+    orientationNumber:
+      - Length:
+          min: 0
+          max: 50
+          minMessage: 'Orientation number must be at least {{ limit }} characters long'
+          maxMessage: 'Orientation number cannot be longer than {{ limit }} characters'
+    postCode:
+      - Length:
+          min: 0
+          max: 20
+          minMessage: 'PostCode must be at least {{ limit }} characters long'
+          maxMessage: 'PostCode cannot be longer than {{ limit }} characters'
+
+Trexima\Issz\Model\JobOffer\Location:
+  properties:
+    lau2:
+      - Length:
+          min: 0
+          max: 255
+          minMessage: 'Lau2 must be at least {{ limit }} characters long'
+          maxMessage: 'Lau2 cannot be longer than {{ limit }} characters'
+    nUTS3:
+      - Length:
+          min: 0
+          max: 255
+          minMessage: 'NUTS3 must be at least {{ limit }} characters long'
+          maxMessage: 'NUTS3 cannot be longer than {{ limit }} characters'
+    street:
+      - Length:
+          min: 0
+          max: 100
+          minMessage: 'Street must be at least {{ limit }} characters long'
+          maxMessage: 'Street cannot be longer than {{ limit }} characters'
+#    propertyRegistrationNumber:
+    orientationNumber:
+      - Length:
+          min: 0
+          max: 50
+          minMessage: 'Orientation number must be at least {{ limit }} characters long'
+          maxMessage: 'Orientation number cannot be longer than {{ limit }} characters'
+    postCode:
+      - Length:
+          min: 0
+          max: 20
+          minMessage: 'PostCode must be at least {{ limit }} characters long'
+          maxMessage: 'PostCode cannot be longer than {{ limit }} characters'
+
+Trexima\Issz\Model\JobOffer\RequiredKnowledge:
+  properties:
+    generalAbilities:
+      - Length:
+          min: 0
+          max: 3000
+          minMessage: 'General abilities must be at least {{ limit }} characters long'
+          maxMessage: 'General abilities cannot be longer than {{ limit }} characters'
+    personalPrerequisites:
+      - Length:
+          min: 0
+          max: 3000
+          minMessage: 'Personal prerequisites must be at least {{ limit }} characters long'
+          maxMessage: 'Personal prerequisites cannot be longer than {{ limit }} characters'
+    certification:
+      - Length:
+          min: 0
+          max: 3000
+          minMessage: 'Certification must be at least {{ limit }} characters long'
+          maxMessage: 'Certification cannot be longer than {{ limit }} characters'
+    drivingLicence:
+      - Length:
+          min: 0
+          max: 3000
+          minMessage: 'Driving licence must be at least {{ limit }} characters long'
+          maxMessage: 'Driving licence cannot be longer than {{ limit }} characters'
+
+Trexima\Issz\Model\JobOffer\RequiredQalification:
+  properties:
+    educationLevel:
+     - NotBlank: ~
+     - Choice: { choices: ['109710', '109711', '109712', '109713', '109714', '109715', '109716', '109717', '109718', '109719'], message: Choose a valid employmentRelationship. }
+    fieldOfStudy:
+      - Length:
+          min: 0
+          max: 255
+          minMessage: 'Field Of Study must be at least {{ limit }} characters long'
+          maxMessage: 'Field Of Study cannot be longer than {{ limit }} characters'
+
+Trexima\Issz\Model\JobOffer\WorkingLoad:
+  properties:
+    workingWeekHours:
+      - Positive: ~
+      - LessThanOrEqual: 9999
+    workingTimes:
+      - Length:
+          min: 0
+          max: 255
+          minMessage: 'Working Times must be at least {{ limit }} characters long'
+          maxMessage: 'Working Times cannot be longer than {{ limit }} characters'

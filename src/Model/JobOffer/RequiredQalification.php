@@ -2,7 +2,7 @@
 
 namespace Trexima\Issz\Model\JobOffer;
 
-class RequiredQalification
+class RequiredQalification implements \JsonSerializable
 {
     /**
      * - 109710 - Neukončené základné vzdelanie
@@ -18,13 +18,14 @@ class RequiredQalification
      *
      * @var string
      */
-    protected string $educationLevel;
+    protected ?string $educationLevel = null;
+
     /**
      * Študijný odbor
      *
      * @var string
      */
-    protected string $fieldOfStudy;
+    protected ?string $fieldOfStudy = null;
 
     /**
      * - 109710 - Neukončené základné vzdelanie
@@ -40,7 +41,7 @@ class RequiredQalification
      *
      * @return string
      */
-    public function getEducationLevel(): string
+    public function getEducationLevel(): ?string
     {
         return $this->educationLevel;
     }
@@ -61,7 +62,7 @@ class RequiredQalification
      *
      * @return self
      */
-    public function setEducationLevel(string $educationLevel): self
+    public function setEducationLevel(?string $educationLevel): self
     {
         $this->educationLevel = $educationLevel;
         return $this;
@@ -72,7 +73,7 @@ class RequiredQalification
      *
      * @return string
      */
-    public function getFieldOfStudy(): string
+    public function getFieldOfStudy(): ?string
     {
         return $this->fieldOfStudy;
     }
@@ -84,9 +85,17 @@ class RequiredQalification
      *
      * @return self
      */
-    public function setFieldOfStudy(string $fieldOfStudy): self
+    public function setFieldOfStudy(?string $fieldOfStudy): self
     {
         $this->fieldOfStudy = $fieldOfStudy;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'educationLevel' => $this->getEducationLevel(),
+            'fieldOfStudy' => $this->getFieldOfStudy(),
+        ];
     }
 }
