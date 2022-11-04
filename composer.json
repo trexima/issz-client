@@ -3,7 +3,7 @@
     "description": "A Bundle for connecting to slovak national job registry",
     "type": "library",
     "license": "MIT",
-	"version" "1.0.0",
+	"version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Trexima\\Issz\\": "src/"
