@@ -4,10 +4,6 @@ namespace Trexima\Issz\Service;
 
 use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\JsonSerializableNormalizer;
-use Symfony\Component\Serializer\Serializer;
-use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Trexima\Issz\Client\ISSZClient;
@@ -16,24 +12,16 @@ class ISSZService
 {
     private ISSZClient $ISSZClient;
     private ValidatorInterface $validator;
-    private Serializer $serializer;
 
-    public function __construct(ISSZClient $ISSZClient, ValidatorInterface $validator = null, SerializerInterface $serializer = null)
+    public function __construct(ISSZClient $ISSZClient, ValidatorInterface $validator = null)
     {
         if (null === $validator) {
             $validator = Validation::createValidatorBuilder()
                 ->addYamlMapping(realpath(__DIR__ . '/../Validator/validation.yaml'))
                 ->getValidator();
         }
-        if (null === $serializer) {
-            $encoders = [new JsonEncoder()];
-            $normalizers = [new JsonSerializableNormalizer()];
-            $serializer = new Serializer($normalizers, $encoders);
-        }
         $this->validator = $validator;
         $this->ISSZClient = $ISSZClient;
-
-        $this->serializer = $serializer;
     }
 
     /**
@@ -47,25 +35,42 @@ class ISSZService
 
     /**
      * @param string $uri
+     * @param string $batchId
      * @param array $jobOffers
      * @return ResponseInterface
      */
-    public function postBatch(string $uri, array $jobOffers): ResponseInterface
+    public function postBatch(string $uri, string $batchId, array $jobOffers): ResponseInterface
     {
-        return $this->ISSZClient->post($uri,  ['json' => $jobOffers]);
+        return $this->ISSZClient->post($uri.$batchId,  ['json' => $jobOffers]);
     }
 
+    /**
+     * @param string $uri
+     * @param string $batchId
+     * @return ResponseInterface
+     */
     public function commitBatch(string $uri, string $batchId): ResponseInterface
     {
         return $this->ISSZClient->post($uri.$batchId.'/prevod');
     }
 
     /**
-     * @return Serializer
+     * @param string $uri
+     * @param string $batchId
+     * @return ResponseInterface
      */
-    public function getSerializer(): Serializer
+    public function getBatch(string $uri, string $batchId): ResponseInterface
     {
-        return $this->serializer;
+        return $this->ISSZClient->get($uri.$batchId);
+    }
+
+    /**
+     * @param string $uri
+     * @return ResponseInterface
+     */
+    public function getExternalKey(string $uri): ResponseInterface
+    {
+        return $this->ISSZClient->get($uri);
     }
 
     /**

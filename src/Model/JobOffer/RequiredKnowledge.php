@@ -2,39 +2,42 @@
 
 namespace Trexima\Issz\Model\JobOffer;
 
-class RequiredKnowledge
+class RequiredKnowledge implements \JsonSerializable
 {
     /**
      * Všeobecné spôsobilosti
      *
      * @var string
      */
-    protected string $generalAbilities;
+    protected ?string $generalAbilities = null;
+
     /**
      * Osobnostné predpoklady
      *
      * @var string
      */
-    protected string $personalPrerequisites;
+    protected ?string $personalPrerequisites = null;
+
     /**
      * Osvedčenia/certifikáty
      *
      * @var string
      */
-    protected string $certification;
+    protected ?string $certification = null;
+
     /**
      * Vodičské oprávnenie
      *
      * @var string
      */
-    protected string $drivingLicence;
+    protected ?string $drivingLicence = null;
 
     /**
      * Všeobecné spôsobilosti
      *
      * @return string
      */
-    public function getGeneralAbilities(): string
+    public function getGeneralAbilities(): ?string
     {
         return $this->generalAbilities;
     }
@@ -46,7 +49,7 @@ class RequiredKnowledge
      *
      * @return self
      */
-    public function setGeneralAbilities(string $generalAbilities): self
+    public function setGeneralAbilities(?string $generalAbilities): self
     {
         $this->generalAbilities = $generalAbilities;
         return $this;
@@ -57,7 +60,7 @@ class RequiredKnowledge
      *
      * @return string
      */
-    public function getPersonalPrerequisites(): string
+    public function getPersonalPrerequisites(): ?string
     {
         return $this->personalPrerequisites;
     }
@@ -69,7 +72,7 @@ class RequiredKnowledge
      *
      * @return self
      */
-    public function setPersonalPrerequisites(string $personalPrerequisites): self
+    public function setPersonalPrerequisites(?string $personalPrerequisites): self
     {
         $this->personalPrerequisites = $personalPrerequisites;
         return $this;
@@ -80,7 +83,7 @@ class RequiredKnowledge
      *
      * @return string
      */
-    public function getCertification(): string
+    public function getCertification(): ?string
     {
         return $this->certification;
     }
@@ -92,7 +95,7 @@ class RequiredKnowledge
      *
      * @return self
      */
-    public function setCertification(string $certification): self
+    public function setCertification(?string $certification): self
     {
         $this->certification = $certification;
         return $this;
@@ -103,7 +106,7 @@ class RequiredKnowledge
      *
      * @return string
      */
-    public function getDrivingLicence(): string
+    public function getDrivingLicence(): ?string
     {
         return $this->drivingLicence;
     }
@@ -115,9 +118,19 @@ class RequiredKnowledge
      *
      * @return self
      */
-    public function setDrivingLicence(string $drivingLicence): self
+    public function setDrivingLicence(?string $drivingLicence): self
     {
         $this->drivingLicence = $drivingLicence;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'generalAbilities' => $this->getGeneralAbilities(),
+            'personalPrerequisites' => $this->getPersonalPrerequisites(),
+            'certification' => $this->getCertification(),
+            'drivingLicence' => $this->getDrivingLicence(),
+        ];
     }
 }

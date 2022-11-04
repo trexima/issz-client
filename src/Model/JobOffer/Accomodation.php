@@ -2,27 +2,28 @@
 
 namespace Trexima\Issz\Model\JobOffer;
 
-class Accomodation
+class Accomodation implements \JsonSerializable
 {
     /**
      * Hradené ubytovanie
      *
      * @var bool
      */
-    protected bool $paid;
+    protected ?bool $paid = null;
+
     /**
      * Zabezpečené ubytovanie
      *
      * @var bool
      */
-    protected bool $warranted;
+    protected ?bool $warranted = null;
 
     /**
      * Hradené ubytovanie
      *
      * @return bool
      */
-    public function getPaid(): bool
+    public function getPaid(): ?bool
     {
         return $this->paid;
     }
@@ -34,7 +35,7 @@ class Accomodation
      *
      * @return self
      */
-    public function setPaid(bool $paid): self
+    public function setPaid(?bool $paid): self
     {
         $this->paid = $paid;
         return $this;
@@ -45,7 +46,7 @@ class Accomodation
      *
      * @return bool
      */
-    public function getWarranted(): bool
+    public function getWarranted(): ?bool
     {
         return $this->warranted;
     }
@@ -57,9 +58,17 @@ class Accomodation
      *
      * @return self
      */
-    public function setWarranted(bool $warranted): self
+    public function setWarranted(?bool $warranted): self
     {
         $this->warranted = $warranted;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'paid' => $this->getPaid(),
+            'warranted' => $this->getWarranted(),
+        ];
     }
 }

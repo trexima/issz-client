@@ -2,98 +2,132 @@
 
 namespace Trexima\Issz\Model\JobOffer;
 
-class JobLocation
+class JobLocation implements \JsonSerializable
 {
     /**
-     * specific code = 703, name = Slovensko, desc = Slovenská republika, name_en = Slovakia, desc_en = Slovak Republic, Alpha3 = SVK, Alpha2 = SK
+     * specific code = 703
+     * name = Slovensko
+     * desc = Slovenská republika
+     * name_en = Slovakia
+     * desc_en = Slovak Republic
+     * Alpha3 = SVK
+     * Alpha2 = SK
      *
      * @var int
      */
-    protected int $stateCodeIso3166;
+    protected ?int $stateCodeIso3166 = null;
+
     /**
-     * specific code = SK0101, name = Bratislava I, desc = Okres Bratislava I, desc_en = District of Bratislava I
+     * specific code = SK0101
+     * name = Bratislava I
+     * desc = Okres Bratislava I
+     * desc_en = District of Bratislava I
      *
      * @var string
      */
-    protected string $lau1;
+    protected ?string $lau1 = null;
+
     /**
      * Lokálna štatistická územná jednotka 2
      *
      * @var string
      */
-    protected string $lau2;
+    protected ?string $lau2 = null;
+
     /**
      * Regionálna štatistická územná jednotka 3
      *
      * @var string
      */
-    protected string $nUTS3;
+    protected ?string $nUTS3 = null;
+
     /**
      * Ulica
      *
      * @var string
      */
-    protected string $street;
+    protected ?string $street = null;
+
     /**
      * Súpisné/Popisné číslo
      *
      * @var int
      */
-    protected int $propertyRegistrationNumber;
+    protected ?int $propertyRegistrationNumber = null;
+
     /**
      * Orientačné číslo
      *
      * @var string
      */
-    protected string $orientationNumber;
+    protected ?string $orientationNumber = null;
+
     /**
      * PSČ
      *
      * @var string
      */
-    protected string $postCode;
+    protected ?string $postCode = null;
 
     /**
-     * specific code = 703, name = Slovensko, desc = Slovenská republika, name_en = Slovakia, desc_en = Slovak Republic, Alpha3 = SVK, Alpha2 = SK
+     * specific code = 703
+     * name = Slovensko
+     * desc = Slovenská republika
+     * name_en = Slovakia
+     * desc_en = Slovak Republic
+     * Alpha3 = SVK
+     * Alpha2 = SK
      *
      * @return int
      */
-    public function getStateCodeIso3166(): int
+    public function getStateCodeIso3166(): ?int
     {
         return $this->stateCodeIso3166;
     }
 
     /**
-     * specific code = 703, name = Slovensko, desc = Slovenská republika, name_en = Slovakia, desc_en = Slovak Republic, Alpha3 = SVK, Alpha2 = SK
+     * specific code = 703
+     * name = Slovensko
+     * desc = Slovenská republika
+     * name_en = Slovakia
+     * desc_en = Slovak Republic
+     * Alpha3 = SVK
+     * Alpha2 = SK
      *
      * @param int $stateCodeIso3166
      *
      * @return self
      */
-    public function setStateCodeIso3166(int $stateCodeIso3166): self
+    public function setStateCodeIso3166(?int $stateCodeIso3166): self
     {
         $this->stateCodeIso3166 = $stateCodeIso3166;
         return $this;
     }
 
     /**
-     * specific code = SK0101, name = Bratislava I, desc = Okres Bratislava I, desc_en = District of Bratislava I
+     * specific code = SK0101
+     * name = Bratislava I
+     * desc = Okres Bratislava I
+     * desc_en = District of Bratislava I
      *
      * @return string
      */
-    public function getLau1(): string
+    public function getLau1(): ?string
     {
         return $this->lau1;
     }
 
     /**
-     * specific code = SK0101, name = Bratislava I, desc = Okres Bratislava I, desc_en = District of Bratislava I
+     * specific code = SK0101
+     * name = Bratislava I
+     * desc = Okres Bratislava I
+     * desc_en = District of Bratislava I
      *
      * @param string $lau1
      *
      * @return self
      */
-    public function setLau1(string $lau1): self
+    public function setLau1(?string $lau1): self
     {
         $this->lau1 = $lau1;
         return $this;
@@ -104,7 +138,7 @@ class JobLocation
      *
      * @return string
      */
-    public function getLau2(): string
+    public function getLau2(): ?string
     {
         return $this->lau2;
     }
@@ -116,7 +150,7 @@ class JobLocation
      *
      * @return self
      */
-    public function setLau2(string $lau2): self
+    public function setLau2(?string $lau2): self
     {
         $this->lau2 = $lau2;
         return $this;
@@ -127,7 +161,7 @@ class JobLocation
      *
      * @return string
      */
-    public function getNUTS3(): string
+    public function getNUTS3(): ?string
     {
         return $this->nUTS3;
     }
@@ -139,7 +173,7 @@ class JobLocation
      *
      * @return self
      */
-    public function setNUTS3(string $nUTS3): self
+    public function setNUTS3(?string $nUTS3): self
     {
         $this->nUTS3 = $nUTS3;
         return $this;
@@ -150,7 +184,7 @@ class JobLocation
      *
      * @return string
      */
-    public function getStreet(): string
+    public function getStreet(): ?string
     {
         return $this->street;
     }
@@ -162,7 +196,7 @@ class JobLocation
      *
      * @return self
      */
-    public function setStreet(string $street): self
+    public function setStreet(?string $street): self
     {
         $this->street = $street;
         return $this;
@@ -173,7 +207,7 @@ class JobLocation
      *
      * @return int
      */
-    public function getPropertyRegistrationNumber(): int
+    public function getPropertyRegistrationNumber(): ?int
     {
         return $this->propertyRegistrationNumber;
     }
@@ -185,7 +219,7 @@ class JobLocation
      *
      * @return self
      */
-    public function setPropertyRegistrationNumber(int $propertyRegistrationNumber): self
+    public function setPropertyRegistrationNumber(?int $propertyRegistrationNumber): self
     {
         $this->propertyRegistrationNumber = $propertyRegistrationNumber;
         return $this;
@@ -196,7 +230,7 @@ class JobLocation
      *
      * @return string
      */
-    public function getOrientationNumber(): string
+    public function getOrientationNumber(): ?string
     {
         return $this->orientationNumber;
     }
@@ -208,7 +242,7 @@ class JobLocation
      *
      * @return self
      */
-    public function setOrientationNumber(string $orientationNumber): self
+    public function setOrientationNumber(?string $orientationNumber): self
     {
         $this->orientationNumber = $orientationNumber;
         return $this;
@@ -219,7 +253,7 @@ class JobLocation
      *
      * @return string
      */
-    public function getPostCode(): string
+    public function getPostCode(): ?string
     {
         return $this->postCode;
     }
@@ -231,9 +265,23 @@ class JobLocation
      *
      * @return self
      */
-    public function setPostCode(string $postCode): self
+    public function setPostCode(?string $postCode): self
     {
         $this->postCode = $postCode;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'stateCodeIso3166' => $this->getStateCodeIso3166(),
+            'lau1' => $this->getLau1(),
+            'lau2' => $this->getLau2(),
+            'NUTS3' => $this->getNUTS3(),
+            'street' => $this->getStreet(),
+            'propertyRegistrationNumber' => $this->getPropertyRegistrationNumber(),
+            'orientationNumber' => $this->getOrientationNumber(),
+            'postCode' => $this->getPostCode(),
+        ];
     }
 }

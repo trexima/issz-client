@@ -2,25 +2,26 @@
 
 namespace Trexima\Issz\Model\JobOffer;
 
-class WorkingLoad
+class WorkingLoad implements \JsonSerializable
 {
     /**
      * Ustanovený týždenný pracovný čas v hodinách
      * @var int
      */
-    protected int $workingWeekHours;
+    protected ?int $workingWeekHours = null;
+
     /**
      * Rozvrhnutie pracovného času
      * @var string
      */
-    protected string $workingTimes;
+    protected ?string $workingTimes = null;
 
     /**
      * Ustanovený týždenný pracovný čas v hodinách
      *
      * @return int
      */
-    public function getWorkingWeekHours(): int
+    public function getWorkingWeekHours(): ?int
     {
         return $this->workingWeekHours;
     }
@@ -32,7 +33,7 @@ class WorkingLoad
      *
      * @return self
      */
-    public function setWorkingWeekHours(int $workingWeekHours): self
+    public function setWorkingWeekHours(?int $workingWeekHours): self
     {
         $this->workingWeekHours = $workingWeekHours;
         return $this;
@@ -43,7 +44,7 @@ class WorkingLoad
      *
      * @return string
      */
-    public function getWorkingTimes(): string
+    public function getWorkingTimes(): ?string
     {
         return $this->workingTimes;
     }
@@ -55,9 +56,17 @@ class WorkingLoad
      *
      * @return self
      */
-    public function setWorkingTimes(string $workingTimes): self
+    public function setWorkingTimes(?string $workingTimes): self
     {
         $this->workingTimes = $workingTimes;
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            'workingWeekHours' => $this->getWorkingWeekHours(),
+            'workingTimes' => $this->getWorkingTimes(),
+        ];
     }
 }
