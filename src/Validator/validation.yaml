@@ -79,6 +79,8 @@ Trexima\Issz\Model\JobOffer:
     workingLoad:
       - Type: Trexima\Issz\Model\JobOffer\WorkingLoad
       - Valid: ~
+    salaryPeriodType:
+      - Choice: { choices: ['HOURLY', 'MONTHLY'], message: Choose a valid salaryPeriodType. }
     workingShifts:
       - Choice: { choices: ['501701', '501702', '501703', '501705', '501706', '501707', '501708', '501709', '501710', '501799'], message: Choose a valid workingShifts. }
     employmentRelationship:
