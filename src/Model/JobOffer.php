@@ -130,6 +130,14 @@ class JobOffer implements \JsonSerializable
     protected ?WorkingLoad $workingLoad = null;
 
     /**
+     * - HOURLY
+     * - MONTHLY
+     *
+     * @var string
+     */
+    protected ?string $salaryPeriodType = null;
+
+    /**
      * Údaj o tom, či je práca vykonávaná na zmeny a zmennosť
      * - 501701 jednozmenná
      * - 501710 dohodou
@@ -594,6 +602,31 @@ class JobOffer implements \JsonSerializable
     }
 
     /**
+     * - HOURLY
+     * - MONTHLY
+     *
+     * @return string
+     */
+    public function getSalaryPeriodType(): ?string
+    {
+        return $this->salaryPeriodType;
+    }
+
+    /**
+     * - HOURLY
+     * - MONTHLY
+     *
+     * @param string $salaryPeriodType
+     *
+     * @return self
+     */
+    public function setSalaryPeriodType(?string $salaryPeriodType): self
+    {
+        $this->salaryPeriodType = $salaryPeriodType;
+        return $this;
+    }
+
+    /**
      * údaj o tom, či je práca vykonávaná na zmeny a zmennosť
      * - 501701 jednozmenná
      * - 501710 dohodou
@@ -974,6 +1007,7 @@ class JobOffer implements \JsonSerializable
             'startingDate' => $this->getStartingDay(),
             'position-SK-NACE' => $this->getPositionSKNACE(),
             'workingLoad' => $this->getWorkingLoad(),
+            'salaryPeriodType' => $this->getSalaryPeriodType(),
             'workingShifts' => $this->getWorkingShifts(),
             'employmentRelationship' => $this->getEmploymentRelationship(),
             'graduateAvailability' => $this->getGraduateAvailability(),
